@@ -1,4 +1,5 @@
 Any text here will appear on the credits page.
 
-Programmer Richard Gubb.
-Artist Damo Bradbury.
+Template by Richard Gubb
+www.kiwasi.com
+https://bitbucket.org/BoredMormon/kiwasigamejamtemplate
