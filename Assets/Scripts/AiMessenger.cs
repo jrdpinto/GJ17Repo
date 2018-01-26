@@ -81,7 +81,7 @@ public class AiMessenger : MonoBehaviour {
                 rotationModifier *= -1;
             }
 
-            Vector3 eularRotation = m_initialEularDirection;
+            Vector3 eularRotation = m_endRotation.eulerAngles;
             eularRotation.y += rotationModifier;
 
             float rotationCap = 90;
