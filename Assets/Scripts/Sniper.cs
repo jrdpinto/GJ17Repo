@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sniper : MonoBehaviour {
+public class Sniper : Shootable {
 
     AiMessenger[] messengers;
    
@@ -21,18 +21,9 @@ public class Sniper : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            AiMessenger shotMessenger = hit.transform.gameObject.GetComponent<AiMessenger>();
-
-            if (shotMessenger)
-            {
-                shotMessenger.Kill();
-            }
-
-            Vector3 shotPositionResult = hit.point;
-
             foreach (AiMessenger messenger in messengers)
             {
-                messenger.ShotAt(shotPositionResult);
+                messenger.ShotAt(hit);
             }
         }
     }

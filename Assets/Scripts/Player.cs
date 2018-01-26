@@ -21,4 +21,9 @@ public class Player : Sniper {
             Shoot(ray);
         }
     }
+
+    public override void Kill()
+    {
+        // Can't be killed
+    }
 }

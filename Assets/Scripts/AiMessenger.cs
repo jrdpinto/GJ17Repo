@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class AiMessenger : MonoBehaviour {
+public class AiMessenger : Shootable {
     [SerializeField]
     float m_moveSpeed = 5;
     [SerializeField]
@@ -66,8 +66,11 @@ public class AiMessenger : MonoBehaviour {
         }*/
     }
 
-    public void ShotAt(Vector3 shotPos)
+    public override void ShotAt(RaycastHit hit)
     {
+        base.ShotAt(hit);
+
+        Vector3 shotPos = hit.point;
         Vector2 shotPos2d = new Vector2(shotPos.z, shotPos.x);
         Vector3 position = transform.position;
         Vector2 actorPos2D = new Vector2(position.z, position.x);
@@ -94,11 +97,6 @@ public class AiMessenger : MonoBehaviour {
 
             m_endRotation = Quaternion.Euler(eularRotation);
         }
-    }
-
-    public void Kill()
-    {
-        gameObject.SetActive(false);
     }
 
     void OnCollisionEnter(Collision col)
