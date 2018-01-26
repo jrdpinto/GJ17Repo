@@ -11,6 +11,8 @@ public class AiMessenger : MonoBehaviour {
     [SerializeField]
     float m_maxRadiusToChangeDirection = 2;
 
+    public float shotAreaOfEffectRadius {  get { return m_maxRadiusToChangeDirection; } }
+
     Rigidbody m_rigidbody;
 
     Quaternion m_startRotation;
@@ -50,7 +52,7 @@ public class AiMessenger : MonoBehaviour {
         velocity = transform.localRotation * velocity;
         m_rigidbody.velocity = velocity;
 
-        if (Input.GetKeyDown(KeyCode.A))
+       /* if (Input.GetKeyDown(KeyCode.A))
         {
             Vector3 pos = transform.position;
             pos.z -= 1;
@@ -61,7 +63,7 @@ public class AiMessenger : MonoBehaviour {
             Vector3 pos = transform.position;
             pos.z += 1;
             ShotAt(pos);
-        }
+        }*/
     }
 
     public void ShotAt(Vector3 shotPos)
