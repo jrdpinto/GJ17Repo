@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Sniper : Shootable {
 
-    AiMessenger[] messengers;
+    Shootable[] m_shootables;
    
 	// Use this for initialization
 	protected virtual void Start () {
-        messengers = GameObject.FindObjectsOfType<AiMessenger>();
+        m_shootables = GameObject.FindObjectsOfType<Shootable>();
     }
 
     // Update is called once per frame
@@ -21,9 +21,9 @@ public class Sniper : Shootable {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            foreach (AiMessenger messenger in messengers)
+            foreach (Shootable shootable in m_shootables)
             {
-                messenger.ShotAt(hit);
+                shootable.ShotAt(hit);
             }
         }
     }
