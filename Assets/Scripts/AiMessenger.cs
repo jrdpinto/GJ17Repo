@@ -134,12 +134,9 @@ public class AiMessenger : Shootable {
 
     private void sideStep(float signedAngle)
     {
-        if (Mathf.Abs(signedAngle) <= 130.0f)
-        {
-            targetPosition_ += -(Mathf.Sign(signedAngle) * sideStepAmount_);
-            targetPosition_ = Mathf.Sign(targetPosition_) * Mathf.Min(Mathf.Abs(targetPosition_), sideStepMax_);
-            //Debug.Log("Current pos: " + transform.position.z + " Target pos: " + targetPosition_);
-        }
+        targetPosition_ += -(Mathf.Sign(signedAngle) * sideStepAmount_);
+        targetPosition_ = Mathf.Sign(targetPosition_) * Mathf.Min(Mathf.Abs(targetPosition_), sideStepMax_);
+        //Debug.Log("Current pos: " + transform.position.z + " Target pos: " + targetPosition_);
     }
 
     public override void ShotAt(RaycastHit hit)
@@ -185,13 +182,17 @@ public class AiMessenger : Shootable {
 
     void OnCollisionEnter(Collision col)
     {
-        switch (col.gameObject.tag)
+        string tag = col.gameObject.tag;
+        if (tag != "Terrain")
         {
-            case ("PlayAreaBarrier"):
-                m_endRotation = Quaternion.Euler(m_initialEulerDirection);
-                break;
-            default: break;
-        }  
+            Vector3 collisionNormal = col.contacts[0].normal;
+            float collisionAngle = Vector3.Angle(transform.forward, collisionNormal);
+            Debug.Log("Collision angle: " + collisionAngle);
+            if (collisionAngle >= 160.0f)
+            {
+                Kill();
+            }
+        }
     }
 
     void OnTriggerEnter(Collider col)
