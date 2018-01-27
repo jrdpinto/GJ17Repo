@@ -25,6 +25,14 @@ public class AiMessenger : Shootable {
 
     public float shotAreaOfEffectRadius {  get { return m_maxRadiusToChangeDirection; } }
 
+    private enum MessengerState
+    {
+        running = 0,
+        jumping = 1,
+        dead = 2
+    };
+    MessengerState state_ = MessengerState.running;
+
     Rigidbody m_rigidbody;
 
     Quaternion m_startRotation;
@@ -141,27 +149,31 @@ public class AiMessenger : Shootable {
 
     public override void ShotAt(RaycastHit hit)
     {
-        base.ShotAt(hit);
-
-        Vector3 shotPos = hit.point;
-        Vector2 shotPos2d = new Vector2(shotPos.x, shotPos.z);
-        Vector3 position = transform.position;
-        Vector2 actorPos2D = new Vector2(position.x, position.z);
-
-        if (Vector2.Distance(actorPos2D, shotPos2d) <= m_maxRadiusToChangeDirection)
+        if (state_ != MessengerState.jumping)
         {
-            float signedAngle = getSignedShotAngle(shotPos2d, actorPos2D);
-            float absAngle = Mathf.Abs(signedAngle);
-            if (absAngle < 130.0f)
+            base.ShotAt(hit);
+
+            Vector3 shotPos = hit.point;
+            Vector2 shotPos2d = new Vector2(shotPos.x, shotPos.z);
+            Vector3 position = transform.position;
+            Vector2 actorPos2D = new Vector2(position.x, position.z);
+
+            if (Vector2.Distance(actorPos2D, shotPos2d) <= m_maxRadiusToChangeDirection)
             {
-                sideStep(signedAngle);
-            }
-            else if (absAngle >= 130.0f && absAngle < 180.0f)
-            {
-                //Debug.Log("JUMP!");
-                Vector3 velocity = m_rigidbody.velocity;
-                velocity.y = jumpSpeed_;
-                m_rigidbody.velocity = velocity;
+                float signedAngle = getSignedShotAngle(shotPos2d, actorPos2D);
+                float absAngle = Mathf.Abs(signedAngle);
+                if (absAngle < 130.0f)
+                {
+                    sideStep(signedAngle);
+                }
+                else if (absAngle >= 130.0f && absAngle < 180.0f)
+                {
+                    //Debug.Log("JUMP!");
+                    Vector3 velocity = m_rigidbody.velocity;
+                    velocity.y = jumpSpeed_;
+                    m_rigidbody.velocity = velocity;
+                    state_ = MessengerState.jumping;
+                }
             }
         }
     }
@@ -192,6 +204,10 @@ public class AiMessenger : Shootable {
             {
                 Kill();
             }
+        }
+        else if (tag == "Terrain" && state_ == MessengerState.jumping)
+        {
+            state_ = MessengerState.running;
         }
     }
 
