@@ -33,14 +33,14 @@ public class AiMessenger : Shootable {
     }
     float m_rotationTimer = 1;
 
-    Vector3 m_initialEularDirection;
+    Vector3 m_initialEulerDirection;
 
 	// Use this for initialization
 	void Start () {
         m_rigidbody = GetComponent<Rigidbody>();
         m_startRotation = transform.localRotation;
         m_endRotation = transform.localRotation;
-        m_initialEularDirection = transform.localEulerAngles;
+        m_initialEulerDirection = transform.localEulerAngles;
     }
 	
 	// Update is called once per frame
@@ -86,21 +86,21 @@ public class AiMessenger : Shootable {
                 rotationModifier *= -1;
             }
 
-            Vector3 eularRotation = m_endRotation.eulerAngles;
-            eularRotation.y += rotationModifier;
+            Vector3 eulerRotation = m_endRotation.eulerAngles;
+            eulerRotation.y += rotationModifier;
 
             float rotationCap = 90;
-            if (eularRotation.y < m_initialEularDirection.y - rotationCap)
-                eularRotation.y = m_initialEularDirection.y - rotationCap;
-            else if (eularRotation.y > m_initialEularDirection.y + rotationCap)
-                eularRotation.y = m_initialEularDirection.y + rotationCap;
+            if (eulerRotation.y < m_initialEulerDirection.y - rotationCap)
+                eulerRotation.y = m_initialEulerDirection.y - rotationCap;
+            else if (eulerRotation.y > m_initialEulerDirection.y + rotationCap)
+                eulerRotation.y = m_initialEulerDirection.y + rotationCap;
 
-            m_endRotation = Quaternion.Euler(eularRotation);
+            m_endRotation = Quaternion.Euler(eulerRotation);
         }
     }
 
     void OnCollisionEnter(Collision col)
     {
-        m_endRotation = Quaternion.Euler(m_initialEularDirection);
+        m_endRotation = Quaternion.Euler(m_initialEulerDirection);
     }
 }
