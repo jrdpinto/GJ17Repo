@@ -24,12 +24,20 @@ public class Sniper : Shootable {
 
     protected virtual void Shoot(Ray ray)
     {
+        StartCoroutine(DelayShot(ray));
+    }
+
+    IEnumerator DelayShot(Ray ray)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
             foreach (Shootable shootable in m_shootables)
             {
-                shootable.ShotAt(hit);  
+                shootable.ShotAt(hit);
             }
 
             Vector3 dustPosition = hit.point;
