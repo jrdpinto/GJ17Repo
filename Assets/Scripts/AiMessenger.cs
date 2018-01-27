@@ -10,6 +10,10 @@ public class AiMessenger : Shootable {
     float m_rotationSpeed = 1;
     [SerializeField]
     float m_maxRadiusToChangeDirection = 2;
+    [SerializeField]
+    float rotationStep_ = 90.0f;
+    [SerializeField]
+    float rotationLimit_ = 90.0f;
 
     public float shotAreaOfEffectRadius {  get { return m_maxRadiusToChangeDirection; } }
 
@@ -41,6 +45,10 @@ public class AiMessenger : Shootable {
         m_startRotation = transform.localRotation;
         m_endRotation = transform.localRotation;
         m_initialEulerDirection = transform.localEulerAngles;
+
+        m_initialEulerDirection = CorrectVectorRange(m_initialEulerDirection);
+
+        Debug.Log("Current direction: " + transform.forward);
     }
 	
 	// Update is called once per frame
@@ -48,8 +56,7 @@ public class AiMessenger : Shootable {
         transform.localRotation = m_endRotation;// Quaternion.Lerp(m_startRotation, m_endRotation, m_rotationTimer);
         m_rotationTimer += m_rotationSpeed * Time.deltaTime;
 
-        Vector3 velocity = new Vector3(m_moveSpeed, 0, 0);
-        velocity = transform.localRotation * velocity;
+        Vector3 velocity = transform.forward * m_moveSpeed;
         m_rigidbody.velocity = velocity;
 
        /* if (Input.GetKeyDown(KeyCode.A))
@@ -71,24 +78,36 @@ public class AiMessenger : Shootable {
         base.ShotAt(hit);
 
         Vector3 shotPos = hit.point;
-        Vector2 shotPos2d = new Vector2(shotPos.z, shotPos.x);
+        Vector2 shotPos2d = new Vector2(shotPos.x, shotPos.z);
         Vector3 position = transform.position;
-        Vector2 actorPos2D = new Vector2(position.z, position.x);
+        Vector2 actorPos2D = new Vector2(position.x, position.z);
 
         if (Vector2.Distance(actorPos2D, shotPos2d) <= m_maxRadiusToChangeDirection)
         {
-            // We need to change direction
-            Vector2 relativeShotPos = shotPos2d - actorPos2D;
+            // Determine the angle between the messenger and the shot
+            Vector2 shotDirection = shotPos2d - actorPos2D;
+            shotDirection.Normalize();
+            Vector2 direction2D;
+            direction2D.x = transform.forward.x;
+            direction2D.y = transform.forward.z;
+            float signedAngle = Vector2.SignedAngle(shotDirection, direction2D);
+            //Debug.Log("Shot direction: "+ shotDirection + " Direction: " + transform.forward + " Shot angle: " + angle);
+            //Debug.Log("Angle: " + signedAngle);
 
-            float rotationModifier = 90;
-            if (relativeShotPos.x > 0)
+            // Determine rotation
+            float angle = Mathf.Abs(signedAngle);
+            float rotation = 0.0f;
+            if (angle <= 130.0f)
             {
-                rotationModifier *= -1;
+                // Negate rotation as the messenger needs to rotate in the opposite direction of the shot
+                rotation = -(Mathf.Sign(signedAngle) * rotationStep_);
             }
 
-            Vector3 eulerRotation = m_endRotation.eulerAngles;
-            eulerRotation.y += rotationModifier;
+            Debug.Log(angle);
+            Debug.Log(rotation);
 
+            Vector3 eulerRotation = CorrectVectorRange(m_endRotation.eulerAngles);
+            eulerRotation.y += rotation;
             float rotationCap = 90;
             if (eulerRotation.y < m_initialEulerDirection.y - rotationCap)
                 eulerRotation.y = m_initialEulerDirection.y - rotationCap;
@@ -97,6 +116,20 @@ public class AiMessenger : Shootable {
 
             m_endRotation = Quaternion.Euler(eulerRotation);
         }
+    }
+
+    Vector3 CorrectVectorRange(Vector3 vec)
+    {
+        if (vec.y >= 180)
+        {
+            vec.y -= 360;
+        }
+        else if (vec.y <= -180)
+        {
+            vec.y += 360;
+        }
+
+        return vec;
     }
 
     void OnCollisionEnter(Collision col)
