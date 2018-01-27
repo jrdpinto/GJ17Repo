@@ -31,7 +31,7 @@ public class EnemySniper : Sniper {
         if (m_target && m_target.gameObject.activeSelf)
         {
             Vector3 directionToTarget = (m_target.transform.position - transform.position).normalized;
-            m_timeTillShotIsFired -= Time.deltaTime;
+            m_shotCountdownTimer -= Time.deltaTime;
 
             m_endRotation = Quaternion.LookRotation(directionToTarget);
 
@@ -39,7 +39,7 @@ public class EnemySniper : Sniper {
             transform.rotation = Quaternion.Lerp(m_startRotation, m_endRotation, m_rotationLerpTimer);// Quaternion.LookRotation(directionToTarget);
 
             // Enough time has elapsed, fire at the target
-            if (m_timeTillShotIsFired <= 0)
+            if (m_shotCountdownTimer <= 0)
             {
                 Vector3 shotDirection = directionToTarget;
                 Ray ray = new Ray(transform.position, shotDirection);
@@ -57,9 +57,9 @@ public class EnemySniper : Sniper {
 
         if (countdownText)
         {
-            countdownText.gameObject.SetActive(m_target);
+            countdownText.gameObject.SetActive(m_target && m_target.gameObject.activeSelf);
 
-            float time = m_timeTillShotIsFired;
+            float time = m_shotCountdownTimer;
             if (time < 0)
                 time = 0;
             countdownText.text = string.Format("{0:f2}", time);

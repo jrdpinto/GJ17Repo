@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Sniper {
+    [SerializeField]
+    float reloadTime = 1.5f;
+    [SerializeField]
+    UnityEngine.UI.Text ammoCountText;
+
     Camera cam;
     bool m_canShoot = true;
     ReticalController retical;
@@ -22,8 +27,10 @@ public class Player : Sniper {
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             Shoot(ray);
-            StartCoroutine(Reload(2));
+            StartCoroutine(Reload(reloadTime));
         }
+
+        ammoCountText.text = string.Format("Ammo - {0}/1", m_canShoot ? 1 : 0);
     }
 
     public override void Kill()

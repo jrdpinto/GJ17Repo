@@ -104,9 +104,6 @@ public class AiMessenger : Shootable {
                 rotation = -(Mathf.Sign(signedAngle) * rotationStep_);
             }
 
-            Debug.Log(angle);
-            Debug.Log(rotation);
-
             Vector3 eulerRotation = CorrectVectorRange(m_endRotation.eulerAngles);
             eulerRotation.y += rotation;
             float rotationCap = 90;
