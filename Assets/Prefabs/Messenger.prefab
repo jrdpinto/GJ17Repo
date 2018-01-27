@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 82450208765276840}
   m_Layer: 0
   m_Name: Messenger
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,10 +236,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 3.5
+  sideStepAmount_: 2
+  sideStepSpeed_: 10
+  sideStepMax_: 12
   m_rotationSpeed: 5
   m_maxRadiusToChangeDirection: 2.5
   rotationStep_: 90
-  rotationLimit_: 90
+  jumpSpeed_: 5
 --- !u!136 &136086522316536292
 CapsuleCollider:
   m_ObjectHideFlags: 1
