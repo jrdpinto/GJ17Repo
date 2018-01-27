@@ -20,6 +20,8 @@ public class AiMessenger : Shootable {
     float m_maxRadiusToChangeDirection = 2;
     [SerializeField]
     float rotationStep_ = 90.0f;
+    [SerializeField]
+    float jumpSpeed_ = 5.0f;
 
     public float shotAreaOfEffectRadius {  get { return m_maxRadiusToChangeDirection; } }
 
@@ -152,7 +154,18 @@ public class AiMessenger : Shootable {
         if (Vector2.Distance(actorPos2D, shotPos2d) <= m_maxRadiusToChangeDirection)
         {
             float signedAngle = getSignedShotAngle(shotPos2d, actorPos2D);
-            sideStep(signedAngle);
+            float absAngle = Mathf.Abs(signedAngle);
+            if (absAngle < 130.0f)
+            {
+                sideStep(signedAngle);
+            }
+            else if (absAngle >= 130.0f && absAngle < 180.0f)
+            {
+                //Debug.Log("JUMP!");
+                Vector3 velocity = m_rigidbody.velocity;
+                velocity.y = jumpSpeed_;
+                m_rigidbody.velocity = velocity;
+            }
         }
     }
 
