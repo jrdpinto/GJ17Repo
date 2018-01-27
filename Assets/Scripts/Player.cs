@@ -52,6 +52,7 @@ public class Player : Sniper {
     {
         base.Shoot(ray);
         m_canShoot = false;
+        GetComponent<AudioSource>().Play();
 
         // Edit mouse cursor
         StartCoroutine(retical.ShootCursorAnim());
