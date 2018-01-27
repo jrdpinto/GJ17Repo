@@ -17,6 +17,6 @@ public class Shootable : MonoBehaviour {
         // Eventually run a death animation
         // Don't destroy sniper/messenger until this audio has finished. I assume this will go along with the animation
         gameObject.GetComponent<AudioSource>().Play();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

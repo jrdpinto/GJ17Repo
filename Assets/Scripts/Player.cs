@@ -12,11 +12,18 @@ public class Player : Sniper {
     bool m_canShoot = true;
     ReticalController retical;
 
+    AudioSource shootAudio;
+    AudioSource reloadAudio;
+
     // Use this for initialization
     protected override void Start () {
         base.Start();
         cam = Camera.main;
         retical = GameObject.FindObjectOfType<ReticalController>();
+
+        AudioSource[] audioClips = GetComponents<AudioSource>();
+        shootAudio = audioClips[0];
+        reloadAudio = audioClips[1];
     }
 
     // Update is called once per frame
@@ -43,7 +50,10 @@ public class Player : Sniper {
 
     IEnumerator Reload(float reloadTime)
     {
-        yield return new WaitForSeconds(reloadTime);
+        
+        yield return new WaitForSeconds(reloadTime/2);
+        reloadAudio.Play();
+        yield return new WaitForSeconds(reloadTime/2);
 
         m_canShoot = true;
     }
@@ -52,7 +62,7 @@ public class Player : Sniper {
     {
         base.Shoot(ray);
         m_canShoot = false;
-        GetComponent<AudioSource>().Play();
+        shootAudio.Play();
 
         // Edit mouse cursor
         StartCoroutine(retical.ShootCursorAnim());
