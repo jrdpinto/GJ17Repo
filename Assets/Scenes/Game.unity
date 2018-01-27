@@ -447,8 +447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camTransform_: {fileID: 696788846}
-  maxDistance_: 1.5
-  speed_: 0.1
+  maxDistance_: 2
+  speed_: 1.5
 --- !u!1001 &804753187
 Prefab:
   m_ObjectHideFlags: 0
