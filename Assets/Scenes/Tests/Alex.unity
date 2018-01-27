@@ -299,6 +299,8 @@ MonoBehaviour:
   m_moveSpeed: 5
   m_rotationSpeed: 5
   m_maxRadiusToChangeDirection: 2
+  rotationStep_: 90
+  rotationLimit_: 90
 --- !u!1 &322803121
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &535922535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +517,8 @@ MonoBehaviour:
   m_moveSpeed: 3.5
   m_rotationSpeed: 5
   m_maxRadiusToChangeDirection: 2.5
+  rotationStep_: 90
+  rotationLimit_: 90
 --- !u!54 &535922536
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1817,4 +1821,50 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &2037273872
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4131459683251390, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 8.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131459683251390, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131459683251390, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131459683251390, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131459683251390, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131459683251390, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131459683251390, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131459683251390, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1917196940433702, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
+      propertyPath: m_Name
+      value: 'Messenger '
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b9e800e0c184a604ea0b3e118a580236, type: 2}
   m_IsPrefabParent: 0
