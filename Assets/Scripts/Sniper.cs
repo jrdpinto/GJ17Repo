@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sniper : Shootable {
+    [SerializeField]
+    GameObject bulletDustPrefab;
 
     Shootable[] m_shootables;
-   
-	// Use this for initialization
-	protected virtual void Start () {
+    ParticleSystem bulletDust;
+
+    // Use this for initialization
+    protected virtual void Start () {
         m_shootables = GameObject.FindObjectsOfType<Shootable>();
+
+        GameObject dustParticles = GameObject.Instantiate(bulletDustPrefab, Vector3.zero, bulletDustPrefab.transform.rotation);
+        bulletDust = dustParticles.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -23,8 +29,12 @@ public class Sniper : Shootable {
         {
             foreach (Shootable shootable in m_shootables)
             {
-                shootable.ShotAt(hit);
+                shootable.ShotAt(hit);  
             }
+
+            Vector3 dustPosition = hit.point;
+            bulletDust.gameObject.transform.position = dustPosition;
+            bulletDust.Play();
         }
     }
 }

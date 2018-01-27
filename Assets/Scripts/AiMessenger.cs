@@ -57,6 +57,7 @@ public class AiMessenger : Shootable {
         m_rotationTimer += m_rotationSpeed * Time.deltaTime;
 
         Vector3 velocity = transform.forward * m_moveSpeed;
+        velocity.y = m_rigidbody.velocity.y;
         m_rigidbody.velocity = velocity;
 
        /* if (Input.GetKeyDown(KeyCode.A))
@@ -134,6 +135,23 @@ public class AiMessenger : Shootable {
 
     void OnCollisionEnter(Collision col)
     {
-        m_endRotation = Quaternion.Euler(m_initialEulerDirection);
+        switch (col.gameObject.tag)
+        {
+            case ("PlayAreaBarrier"):
+                m_endRotation = Quaternion.Euler(m_initialEulerDirection);
+                break;
+            default: break;
+        }  
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        switch (col.gameObject.tag)
+        {
+            case ("Death"):
+                Kill();
+                break;
+            default: break;
+        }
     }
 }

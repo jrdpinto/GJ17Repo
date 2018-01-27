@@ -44,6 +44,7 @@ public class EnemySniper : Sniper {
                 Vector3 shotDirection = directionToTarget;
                 Ray ray = new Ray(transform.position, shotDirection);
                 Shoot(ray);
+                ResetTimer();
             }
 
             m_rotationLerpTimer += Time.deltaTime;

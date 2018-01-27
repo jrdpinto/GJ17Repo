@@ -241,6 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c21fb5c53cc9b4ca5ef0d678c8a9e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletDustPrefab: {fileID: 1849591450202258, guid: ca2ca21b7a1c1f7479149b9c33e53f3e,
+    type: 2}
   m_timeTillShotIsFired: 4
   countdownText: {fileID: 114823683691258818}
 --- !u!222 &222401893546366498
