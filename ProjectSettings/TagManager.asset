@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Death
   - PlayAreaBarrier
+  - Fire
+  - Ground
+  - Terrain
   layers:
   - Default
   - TransparentFX
