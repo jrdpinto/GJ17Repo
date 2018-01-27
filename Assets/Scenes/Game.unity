@@ -254,6 +254,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114363212690675356, guid: 0438251b4fccd014c83e98195e5b7f95,
+        type: 2}
+      propertyPath: ammoCountText
+      value: 
+      objectReference: {fileID: 2120788276}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0438251b4fccd014c83e98195e5b7f95, type: 2}
   m_IsPrefabParent: 0
@@ -1040,6 +1045,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2bf8d3428698fc47a58d009228db130, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2120788276 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114601164207164392, guid: 8188f1c23a1ff6847a580591386073c9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1352357148}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &2132630738
 GameObject:
   m_ObjectHideFlags: 0
