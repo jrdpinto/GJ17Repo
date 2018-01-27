@@ -30,7 +30,10 @@ public class Player : Sniper {
             StartCoroutine(Reload(reloadTime));
         }
 
-        ammoCountText.text = string.Format("Ammo - {0}/1", m_canShoot ? 1 : 0);
+        if (ammoCountText)
+        {
+            ammoCountText.text = string.Format("Ammo - {0}/1", m_canShoot ? 1 : 0);
+        }
     }
 
     public override void Kill()
