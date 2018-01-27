@@ -35,6 +35,7 @@ public class Sniper : Shootable {
             Vector3 dustPosition = hit.point;
             bulletDust.gameObject.transform.position = dustPosition;
             bulletDust.Play();
+            bulletDust.GetComponent<AudioSource>().Play();
         }
     }
 }
