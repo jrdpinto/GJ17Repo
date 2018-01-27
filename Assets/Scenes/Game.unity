@@ -243,19 +243,6 @@ Prefab:
       objectReference: {fileID: 935894858}
     - target: {fileID: 114363212690675356, guid: 0438251b4fccd014c83e98195e5b7f95,
         type: 2}
-      propertyPath: reloadTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378750041938004, guid: 0438251b4fccd014c83e98195e5b7f95, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1312898526506810, guid: 0438251b4fccd014c83e98195e5b7f95, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114363212690675356, guid: 0438251b4fccd014c83e98195e5b7f95,
-        type: 2}
       propertyPath: ammoCountText
       value: 
       objectReference: {fileID: 2120788276}
