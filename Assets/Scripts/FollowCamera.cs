@@ -8,15 +8,15 @@ public class FollowCamera : MonoBehaviour {
     [SerializeField]
     float m_lerpSpeed = 1;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
+    float distanceToTarget_;
+
+    void Start() {
+        distanceToTarget_ = m_target.position.x - transform.position.x;
+    }
 	
-	// Update is called once per frame
-	void Update () {
-        Vector3 position = transform.position;
-        position.x = Mathf.Lerp(position.x, m_target.transform.position.x, Time.deltaTime * m_lerpSpeed);
-        transform.position = position;
+	void FixedUpdate () {
+        Vector3 updatedPosition = transform.position;
+        updatedPosition.x = Mathf.Lerp(transform.position.x, m_target.position.x - distanceToTarget_, Time.deltaTime * m_lerpSpeed);
+        transform.position = updatedPosition;
     }
 }
