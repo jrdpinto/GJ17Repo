@@ -1,58 +1,18 @@
 fileFormatVersion: 2
-guid: d2f316b724343c24ab0c840b1887b7bb
+guid: 05c2ebbd32d0c204a89cd745694a0279
 timeCreated: 1517092987
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: headJnt
-    100004: L_ankle_jnt
-    100006: L_ball_jnt
-    100008: L_elbow_jnt
-    100010: L_knee_jnt
-    100012: L_shoulder_jnt
-    100014: L_thigh_jnt
-    100016: L_wrist_jnt
-    100018: neckJnt
-    100020: pelvisJnt
-    100022: R_ankle_jnt
-    100024: R_ball_jnt
-    100026: R_elbow_jnt
-    100028: R_knee_jnt
-    100030: R_shoulder_jnt
-    100032: R_thigh_jnt
-    100034: R_wrist_jnt
-    100036: rootCon
-    100038: rootJnt
-    100040: soldier1
-    100042: spine01Jnt
-    400000: //RootNode
-    400002: headJnt
-    400004: L_ankle_jnt
-    400006: L_ball_jnt
-    400008: L_elbow_jnt
-    400010: L_knee_jnt
-    400012: L_shoulder_jnt
-    400014: L_thigh_jnt
-    400016: L_wrist_jnt
-    400018: neckJnt
-    400020: pelvisJnt
-    400022: R_ankle_jnt
-    400024: R_ball_jnt
-    400026: R_elbow_jnt
-    400028: R_knee_jnt
-    400030: R_shoulder_jnt
-    400032: R_thigh_jnt
-    400034: R_wrist_jnt
-    400036: rootCon
-    400038: rootJnt
-    400040: soldier1
-    400042: spine01Jnt
-    2100000: blinn1
-    4300000: soldier1
-    9500000: //RootNode
-    13700000: soldier1
+    100000: polySurface48
+    100002: //RootNode
+    400000: polySurface48
+    400002: //RootNode
+    2100000: blinn2
+    2300000: polySurface48
+    3300000: polySurface48
+    4300000: polySurface48
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -83,7 +43,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.35
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -127,7 +87,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

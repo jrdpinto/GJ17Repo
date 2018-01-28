@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
     AiMessenger[] m_messengers;
+    [SerializeField]
+    Text winText;
+    [SerializeField]
+    Text gameOverText;
+    bool m_playerWon = false;
 
 	// Use this for initialization
 	void Start () {
@@ -29,9 +35,13 @@ public class LevelManager : MonoBehaviour {
             }
         }
 
-        if (gameOver)
+        if (m_playerWon)
         {
-
+            winText.gameObject.SetActive(true);
+        }
+        else if (gameOver)
+        {
+            gameOverText.gameObject.SetActive(true);
         }
 	}
 }
