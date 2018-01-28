@@ -58,11 +58,18 @@ public class Player : Sniper {
 
     protected override void Shoot(Ray ray)
     {
-        base.Shoot(ray);
-        m_canShoot = false;
-        shootAudio.Play();
+        StartCoroutine(DelayShot(ray));
 
         // Edit mouse cursor
         StartCoroutine(retical.ShootCursorAnim());
+    }
+
+    IEnumerator DelayShot(Ray ray)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        base.Shoot(ray);
+        m_canShoot = false;
+        shootAudio.Play();
     }
 }
