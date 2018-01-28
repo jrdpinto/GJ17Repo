@@ -24,6 +24,10 @@ public class LevelManager : MonoBehaviour {
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Application.Quit();
+        }
 
         bool gameOver = true;
         foreach (AiMessenger messenger in m_messengers)
