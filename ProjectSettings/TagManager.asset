@@ -9,6 +9,7 @@ TagManager:
   - Fire
   - Ground
   - Terrain
+  - Base
   layers:
   - Default
   - TransparentFX
