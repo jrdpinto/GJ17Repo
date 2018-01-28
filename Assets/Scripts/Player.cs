@@ -7,8 +7,7 @@ public class Player : Sniper {
     float reloadTime = 1.5f;
     [SerializeField]
     UnityEngine.UI.Text ammoCountText;
-
-    Camera cam;
+    
     bool m_canShoot = true;
     ReticalController retical;
 
@@ -18,7 +17,6 @@ public class Player : Sniper {
     // Use this for initialization
     protected override void Start () {
         base.Start();
-        cam = Camera.main;
         retical = GameObject.FindObjectOfType<ReticalController>();
 
         AudioSource[] audioClips = GetComponents<AudioSource>();
@@ -32,7 +30,7 @@ public class Player : Sniper {
 
         if (Input.GetMouseButtonDown(0) && m_canShoot)
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Shoot(ray);
             StartCoroutine(Reload(reloadTime));
         }

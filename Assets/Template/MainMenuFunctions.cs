@@ -12,7 +12,7 @@ public class MainMenuFunctions : MonoBehaviour {
 
     public void OpenScene(string scene)
     {
-        SceneManager.LoadSceneAsync (scene, LoadSceneMode.Additive);
+        SceneManager.LoadScene (scene);
     }
 
     public void CloseScene(string scene)
