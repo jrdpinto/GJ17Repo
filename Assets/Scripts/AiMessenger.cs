@@ -22,6 +22,8 @@ public class AiMessenger : Shootable {
     float rotationStep_ = 90.0f;
     [SerializeField]
     float jumpSpeed_ = 5.0f;
+    [SerializeField]
+    Animator m_anim; 
 
     public float shotAreaOfEffectRadius {  get { return m_maxRadiusToChangeDirection; } }
 
@@ -69,11 +71,17 @@ public class AiMessenger : Shootable {
 
         targetPosition_ = transform.position.z;
 
+        m_anim.SetBool("isJumping", false);
+
         Debug.Log("Current direction: " + transform.forward);
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (state_ == MessengerState.dead)
+            return;
+        else
+            Debug.Log(state_);
         Vector3 position = transform.position;
 
         transform.localRotation = m_endRotation;// Quaternion.Lerp(m_startRotation, m_endRotation, m_rotationTimer);
@@ -149,9 +157,19 @@ public class AiMessenger : Shootable {
 
     public override void ShotAt(RaycastHit hit)
     {
+        if (state_ == MessengerState.dead)
+            return;
+
         if (state_ != MessengerState.jumping)
         {
             base.ShotAt(hit);
+
+            if (state_ == MessengerState.dead)
+            {
+                m_anim.SetBool("shotDead", true);
+
+                return;
+            }
 
             Vector3 shotPos = hit.point;
             Vector2 shotPos2d = new Vector2(shotPos.x, shotPos.z);
@@ -173,9 +191,17 @@ public class AiMessenger : Shootable {
                     velocity.y = jumpSpeed_;
                     m_rigidbody.velocity = velocity;
                     state_ = MessengerState.jumping;
+                    m_anim.SetBool("isJumping", true);
                 }
             }
         }
+    }
+
+    public override void Kill()
+    {
+        state_ = MessengerState.dead;
+
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     Vector3 CorrectVectorRange(Vector3 vec)
@@ -194,6 +220,9 @@ public class AiMessenger : Shootable {
 
     void OnCollisionEnter(Collision col)
     {
+        if (state_ == MessengerState.dead)
+            return;
+
         string tag = col.gameObject.tag;
         if (tag != "Terrain")
         {
@@ -202,12 +231,14 @@ public class AiMessenger : Shootable {
             Debug.Log("Collision angle: " + collisionAngle);
             if (collisionAngle >= 160.0f)
             {
+                m_anim.SetBool("killedByObstacle", true);
                 Kill();
             }
         }
         else if (tag == "Terrain" && state_ == MessengerState.jumping)
         {
             state_ = MessengerState.running;
+            m_anim.SetBool("isJumping", false);
         }
     }
 

@@ -428,7 +428,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000252890660860}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.73, z: 0}
+  m_LocalPosition: {x: 0, y: -0.06, z: -0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 4131459683251390}
@@ -468,7 +468,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917196940433702}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 8.89, y: 1.23, z: -0}
+  m_LocalPosition: {x: -3.1, y: 0.16, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4115782470911730}
@@ -483,7 +483,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1641594755503592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.03, z: 0}
+  m_LocalPosition: {x: 0, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4713398501842200}
@@ -818,7 +818,7 @@ Animator:
   m_GameObject: {fileID: 1641594755503592}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d2f316b724343c24ab0c840b1887b7bb, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a23984039051d33488c4b02f4c57e218, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -849,14 +849,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8a8f5fc41d0164ca18929d591e27ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_moveSpeed: 3.5
-  sideStepAmount_: 2
-  sideStepSpeed_: 10
+  m_moveSpeed: 5
+  sideStepAmount_: 3
+  sideStepSpeed_: 3
   sideStepMax_: 12
   m_rotationSpeed: 5
   m_maxRadiusToChangeDirection: 2.5
   rotationStep_: 90
-  jumpSpeed_: 5
+  jumpSpeed_: 7
+  m_anim: {fileID: 95817217594413772}
 --- !u!136 &136086522316536292
 CapsuleCollider:
   m_ObjectHideFlags: 1
