@@ -28,7 +28,7 @@ public class EnemySniper : Sniper {
 	protected override void Update () {
         base.Update();
 
-        if (m_target && m_target.gameObject.activeSelf)
+        if (m_target && m_target.gameObject.activeSelf && m_target.state != AiMessenger.MessengerState.dead)
         {
             Vector3 directionToTarget = (m_target.transform.position - transform.position).normalized;
             m_shotCountdownTimer -= Time.deltaTime;
@@ -57,7 +57,7 @@ public class EnemySniper : Sniper {
 
         if (countdownText)
         {
-            countdownText.gameObject.SetActive(m_target && m_target.gameObject.activeSelf);
+            countdownText.gameObject.SetActive(m_target && m_target.gameObject.activeSelf && m_target.state != AiMessenger.MessengerState.dead);
 
             float time = m_shotCountdownTimer;
             if (time < 0)
@@ -81,7 +81,7 @@ public class EnemySniper : Sniper {
     {
         AiMessenger messenger = coll.gameObject.GetComponent<AiMessenger>();
 
-        if (!m_target && messenger)
+        if (!m_target && messenger && messenger.state != AiMessenger.MessengerState.dead)
         {
             m_target = messenger;
         }

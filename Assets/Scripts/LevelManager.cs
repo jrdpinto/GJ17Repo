@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour {
         bool gameOver = true;
         foreach (AiMessenger messenger in m_messengers)
         {
-            if (messenger.gameObject.activeSelf)
+            if (messenger.state != AiMessenger.MessengerState.dead)// messenger.gameObject.activeSelf)
             {
                 gameOver = false;
                 break;

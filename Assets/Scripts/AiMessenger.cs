@@ -27,13 +27,15 @@ public class AiMessenger : Shootable {
 
     public float shotAreaOfEffectRadius {  get { return m_maxRadiusToChangeDirection; } }
 
-    private enum MessengerState
+    public enum MessengerState
     {
         running = 0,
         jumping = 1,
         dead = 2
     };
     MessengerState state_ = MessengerState.running;
+
+    public MessengerState state { get { return state_; } }
 
     Rigidbody m_rigidbody;
 
@@ -80,8 +82,7 @@ public class AiMessenger : Shootable {
 	void Update () {
         if (state_ == MessengerState.dead)
             return;
-        else
-            Debug.Log(state_);
+
         Vector3 position = transform.position;
 
         transform.localRotation = m_endRotation;// Quaternion.Lerp(m_startRotation, m_endRotation, m_rotationTimer);
