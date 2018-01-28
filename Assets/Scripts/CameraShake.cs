@@ -37,14 +37,14 @@ public class CameraShake : MonoBehaviour {
         {
             direction_ = (originalPos_ - currentPos).normalized;
             drifting_ = false;
-            Debug.Log("Returning to origin.");
+            //Debug.Log("Returning to origin.");
         }
         else if (!drifting_ && distanceTravelled <= 0.1)
         {
             // Camera has returned to original position. Start drifting again.
             randomiseDirection();
             drifting_ = true;
-            Debug.Log("Drifting.");
+            //Debug.Log("Drifting.");
         }
 
         // Move camera along offset
