@@ -24,14 +24,11 @@ public class Sniper : Shootable {
 
     protected virtual void Shoot(Ray ray)
     {
-        StartCoroutine(DelayShot(ray));
+        FireShot(ray);
     }
 
-    IEnumerator DelayShot(Ray ray)
+    protected void FireShot(Ray ray)
     {
-        yield return new WaitForSeconds(0.2f);
-
-        
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
@@ -45,5 +42,6 @@ public class Sniper : Shootable {
             bulletDust.Play();
             bulletDust.GetComponent<AudioSource>().Play();
         }
+
     }
 }
