@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
     Text winText;
     [SerializeField]
     Text gameOverText;
-    bool m_playerWon = false;
+    public bool m_playerWon = false;
 
 	// Use this for initialization
 	void Start () {
